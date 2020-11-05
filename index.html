@@ -37,12 +37,12 @@
  
 	<body>
 		<div class="container">
-			<div class="test">获取模拟json数据</div>
+			<div class="test">mysql-gin-api</div>
 			<table border="1" cellspacing="0" bordercolor="#4bade8" cellpadding="0" id="jsonTable">
 				<tr>
 					<th>id</th>
-					<th>first_name</th>
-					<th>last_name</th>
+					<th>name</th>
+                    <th>price</th>
 				</tr>
 			</table>
 		</div>
@@ -60,7 +60,7 @@
 						url: "http://picture.nj-jay.com/data.json",
 						//url: "http://nj-jay.com:88/api/v1/book", 无法响应
                         dataType: "json",
-            contentType: "application/json",
+                        contentType: "application/json",
 						success: function(res) {
 							var list = res
 							for(var $i = 0; $i < list.length; $i++) {
