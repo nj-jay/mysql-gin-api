@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/nj-jay/httpServer/middlewares"
 	"strings"
 )
 
@@ -38,8 +39,12 @@ func main() {
 	//gin框架默认配置
 	r := gin.Default()
 
+	r.Use(middlewares.Cors())
+
 	//url路径
 	r.GET("/api/v1/book", QueryDATA)
+
+
 
 	//监听端口88
 	_ = r.Run(":88")
