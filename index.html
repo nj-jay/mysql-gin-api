@@ -37,31 +37,33 @@
  
 	<body>
 		<div class="container">
-			<div class="test">mysql-gin-api</div>
+			<div class="test">获取模拟json数据</div>
 			<table border="1" cellspacing="0" bordercolor="#4bade8" cellpadding="0" id="jsonTable">
 				<tr>
 					<th>id</th>
 					<th>name</th>
-                    <th>price</th>
+					<th>price</th>
 				</tr>
 			</table>
 		</div>
  
 		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+
 			$(function() {
 
-				getDate();
- 
+				getDate()
 				function getDate() {
 					var temp = '';
+					
 					$.ajax({
 						type: "get",
-						url: "http://picture.nj-jay.com/data.json",
-						//url: "http://nj-jay.com:88/api/v1/book", 无法响应
-                        dataType: "json",
-                        contentType: "application/json",
+						url: "http://nj-jay.com:88/api/v1/book",
+						dataType: "json",
+          	 			//contentType: "application/json",
+						async: false,
 						success: function(res) {
+							//alert(res)
 							var list = res
 							for(var $i = 0; $i < list.length; $i++) {
 								temp +=
