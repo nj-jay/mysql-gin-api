@@ -6,12 +6,20 @@ go + gin(web框架) + mysql(数据库) + restful api
 
 ## 代码结构
 
--routers 路由
+main.go 项目入口
 
--controller 控制层 返回响应
+conf    配置文件(mysql参数)
 
--model 
+controllers 返回json数据
 
--service
+database    与数据库进行交互
 
--dao
+middlewares 中间件
+
+models  声明类
+
+routers 设计路由
+
+service 返回数据给controllers层
+
+view    前端界面
