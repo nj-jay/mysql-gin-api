@@ -2,9 +2,13 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+
+		<title>mysql-gin-api</title>
+
 		<style type="text/css">
+
 			.container {
+
 				width: 800px;
 				margin: 0 auto;
 				margin-top: 100px;
@@ -24,61 +28,67 @@
 			#jsonTable {
 				width: 500px;
 				margin: 0 auto;
+				color:#064057 ; 
+				background-color: rgba(231, 219, 227, 0.589);
 			}
 			
 			#jsonTable th,
+			
 			td {
 				padding: 6px 0;
 				line-height: 30px;
 				text-align: center;
+				font-size: larger;
 			}
+
+			.bk{
+
+				background-size:100% auto;
+			}
+
+			#panel,#flip{
+					padding:5px;
+					text-align:center;
+					background-color:rgba(231, 219, 227, 0.589);
+					border:solid 1px #c3c3c3;
+}
+			#panel{
+				font-size: large;
+				padding:50px;
+				display:none;
+			}
+
 		</style>
+
 	</head>
  
-	<body>
-		<div class="container">
-			<div class="test">获取模拟json数据</div>
+	<body background="http://img.tukuppt.com/beijing_preview/00/00/01/5a6ac701689d9.jpg-0.jpg!/fw/780/quality/90/unsharp/true/compress/true"  id="bk">
+
+		<div id="flip">项目简介</div>
+		<div id="panel">mysql-gin-api by nj-jay</div>
+		
+			<div class="test"></div>
 			<table border="1" cellspacing="0" bordercolor="#4bade8" cellpadding="0" id="jsonTable">
 				<tr>
-					<th>id</th>
+					<th >id</th>
 					<th>name</th>
 					<th>price</th>
 				</tr>
 			</table>
-		</div>
  
 		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
 
-			$(function() {
+		<script type="text/javascript" src="js/ajax.js">
 
-				getDate()
-				function getDate() {
-					var temp = '';
-					
-					$.ajax({
-						type: "get",
-						url: "http://nj-jay.com:8080/api/v1/books",
-						dataType: "json",
-          	 			//contentType: "application/json",
-						//async: false,
-						success: function(res) {
-							//alert(res)
-							var list = res
-							for(var $i = 0; $i < list.length; $i++) {
-								temp +=
-									'<tr>' +
-									'<td>' + list[$i].id + '</td>' +
-									'<td>' + list[$i].name + '</td>' +
-									'<td>' + list[$i].price+ '</td>' +
-									'</tr>';
-							}
-							$("#jsonTable tr:not(:first)").html(""); /*  除了第一行tr的内容，其余内容清空，防止获取重复的数据  */
-							$("#jsonTable").append(temp);
-						}
-					});
-				}
-			});
+				$.getDate()			
 		</script>
+
+<script> 
+	$(document).ready(function(){
+	  $("#flip").click(function(){
+		$("#panel").slideToggle("slow");
+	  });
+	});
+	</script>
 	</body>
 </html>

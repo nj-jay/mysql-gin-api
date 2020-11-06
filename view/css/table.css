@@ -1,0 +1,31 @@
+.container {
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 30px 0;
+    border: 1px dashed #272627;
+}
+
+.test {
+    width: 100%;
+    padding: 10px 0;
+    margin: 20px 0;
+    color: #4bade8;
+    font-size: 18px;
+    text-align: center;
+}
+
+#jsonTable {
+    width: 500px;
+    margin: 0 auto;
+    color:#064057 ; 
+    background-color: rgba(202, 162, 122, 0.589);
+}
+
+#jsonTable th,
+
+td {
+    padding: 6px 0;
+    line-height: 30px;
+    text-align: center;
+}
