@@ -2,10 +2,16 @@
 
 前后端分离
 
-后端使用go+gin(框架)
+go + gin(web框架) + mysql(数据库) + restful api
 
-前端使用jquery(ajax get 后端接口)
+## 代码结构
 
-遇到了问题:跨域
+-routers 路由
 
-通过添加中间件解决跨域问题
+-controller 控制层 返回响应
+
+-model 
+
+-service
+
+-dao
