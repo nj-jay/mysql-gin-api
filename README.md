@@ -23,3 +23,20 @@ routers 设计路由
 service 返回数据给controllers层
 
 view    前端界面
+
+## api文档
+
+[GET] http://localhost:8080/api/v1/books
+获取所有信息,返回json数组
+
+[GET] http://localhost:8080/api/v1/book/:id
+单例查询
+
+[POST] http://localhost:8080/api/v1/book/add
+添加信息 name=?&price=?
+
+[PUT] http://localhost:8080/api/v1/book/upgrade/:id
+修改信息 price=?
+
+[DELETE] http://localhost:8080/api/v1/book/delete
+删除信息 id=?

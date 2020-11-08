@@ -9,3 +9,16 @@ type BookData struct {
 	Price float32 `json:"price"`
 
 }
+
+//func NewBookData() *BookData {
+//
+//	return &BookData{
+//
+//		Id:    0,
+//
+//		Name:  "",
+//
+//		Price: 0,
+//	}
+//
+//}
