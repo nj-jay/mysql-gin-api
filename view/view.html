@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<title>mysql-gin-api</title>
+
+		<style type="text/css">
+
+		.container {
+				width: 800px;
+				margin: 0 auto;
+				margin-top: 100px;
+				padding: 30px 0;
+				border: 1px dashed #272627;
+		}
+			
+		.test {
+			width: 100%;
+			padding: 10px 0;
+			margin: 20px 0;
+			color: #4bade8;
+			font-size: 18px;
+			text-align: center;
+		}
+			
+		#jsonTable {
+			width: 500px;
+			margin: 0 auto;
+			color:#064057 ; 
+			background-color: rgba(182, 214, 216, 0.014);
+			border:solid 3px;
+		}
+			
+		
+		th {
+
+			width: 500px;
+			margin: 0 auto;
+			border:solid 3px;
+			background-color: #518288;
+
+		}
+			
+		td {
+				padding: 6px 0;
+				line-height: 30px;
+				text-align: center;
+				border:solid 2px;
+			}
+
+		#panel,#flip{
+			padding:5px;
+			text-align:center;
+			background-color:#9dafb6;
+			border:solid 5px #c3c3c3;
+			font-size: large;
+		}
+		#panel{
+		padding:50px;
+		display:none;
+		font-size: large;
+		}
+	</style>
+</head>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	$(document).ready(function(){
+  		$("#flip").click(function(){
+   			 $("#panel").slideToggle("slow");
+ 		 });
+});
+
+ </script>
+	<body background="https://pic1.zhimg.com/v2-47a311d313d56c479b9b028d7d67807c_r.jpg">
+
+		<div id="flip">简介</div>
+		<div id="panel">mysql-gin-api</div>
+		
+		<div class="test">view</div>
+			<table border="1" cellspacing="0" bordercolor="#4bade8" cellpadding="0" id="jsonTable">
+				<tr>
+					<th >id</th>
+					<th>name</th>
+					<th>price</th>
+				</tr>
+			</table>
+ 
+		
+
+		<script type="text/javascript">
+
+			$(function() {
+
+				getDate()
+				function getDate() {
+					var temp = '';
+					
+					$.ajax({
+						type: "get",
+						url: "http://nj-jay.com:8080/api/v1/books",
+						dataType: "json",
+          	 			//contentType: "application/json",
+						//async: false,
+						success: function(res) {
+							//alert(res)
+							var list = res
+							for(var $i = 0; $i < list.length; $i++) {
+								temp +=
+									'<tr>' +
+									'<td>' + list[$i].id + '</td>' +
+									'<td>' + list[$i].name + '</td>' +
+									'<td>' + list[$i].price+ '</td>' +
+									'</tr>';
+							}
+							$("#jsonTable tr:not(:first)").html(""); /*  除了第一行tr的内容，其余内容清空，防止获取重复的数据  */
+							$("#jsonTable").append(temp);
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
