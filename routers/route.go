@@ -27,6 +27,8 @@ func Router() *gin.Engine {
 
 	r.POST("/api/v1/book/add", controllers.PostSingleData)
 
+	r.POST("/api/v1/login", controllers.TrueLogin)
+
 	return r
 
 }

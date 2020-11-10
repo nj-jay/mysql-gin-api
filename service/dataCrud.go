@@ -130,3 +130,4 @@ func PostSingleData(name, price string) Status {
 	}
 
 }
+

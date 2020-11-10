@@ -14,3 +14,23 @@ func QueryAllLogin(c *gin.Context) {
 	c.IndentedJSON(200, allLogin)
 
 }
+
+func TrueLogin(c *gin.Context) {
+
+	username := c.PostForm("username")
+
+	password := c.PostForm("password")
+
+	status := service.TrueLogin(username, password)
+
+	if status == 200 {
+
+		c.IndentedJSON(200, "success")
+
+	} else {
+
+		c.IndentedJSON(200, "error")
+
+	}
+
+}

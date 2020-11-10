@@ -7,7 +7,6 @@ import (
 	"github.com/nj-jay/httpServer/database"
 
 	"github.com/nj-jay/httpServer/models"
-
 )
 
 type Login models.Login
@@ -58,5 +57,25 @@ func QueryLogin() []Login {
 
 	return sliceLogin
 
+}
 
+func TrueLogin(username, password string) Status {
+
+	var status int
+
+	allLogin := QueryLogin()
+
+	for _, value := range allLogin {
+
+		if username == value.Username {
+
+			if password == value.Password {
+
+				status = 200
+
+			}
+		}
+	}
+
+	return Status(status)
 }
