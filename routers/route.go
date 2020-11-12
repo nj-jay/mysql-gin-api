@@ -17,17 +17,19 @@ func Router() *gin.Engine {
 
 	r.GET("/api/v1/books", controllers.QueryAllData)
 
-	r.GET("/api/v1/book/:id", controllers.QuerySingleDataById)
+	r.POST("/api/v1/book/search", controllers.QueryDataByName)
 
 	r.GET("/api/v1/login", controllers.QueryAllLogin)
 
-	r.DELETE("/api/v1/book/delete", controllers.DeleteSingleDataById)
+	r.POST("/api/v1/book/delete", controllers.DeleteSingleDataById)
 
-	r.PUT("/api/v1/book/update/:id", controllers.UpdateSingleDataById)
+	r.POST("/api/v1/book/update", controllers.UpdateSingleDataById)
 
 	r.POST("/api/v1/book/add", controllers.PostSingleData)
 
 	r.POST("/api/v1/login", controllers.TrueLogin)
+
+	r.POST("/api/v1/login/add", controllers.PostLogin)
 
 	return r
 
