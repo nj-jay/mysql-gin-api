@@ -99,57 +99,52 @@
 <script type="text/javascript">
     	
     	function check_name() {
-		console.log(1);
-	        var code = document.getElementById("name").value;//这是获取账号登陆的ID
-	        var span = document.getElementById("nameReg");
-	        var reg = /^([a-zA-Z0-9][a-zA-Z]{1}|[._]){4,19}$/;
-	        if(reg.test(code)) {
-	        	span.innerText = "验证通过";
-	        	span.style.color = "blue";
 
-	        } else {
+	      console.log(1);
+	      var code = document.getElementById("name").value;//这是获取账号登陆的ID
+	      var span = document.getElementById("nameReg");
+	      var reg = /^([a-zA-Z0-9][a-zA-Z]{1}|[._]){4,19}$/;
+	      if(reg.test(code)) {
+	        span.innerText = "验证通过";
+	        span.style.color = "blue";
 
-	        	span.innerText = "验证不通过";
-	        	span.style.color = "red";
+	      } else {
 
-	      	       }
+	        span.innerText = "验证不通过";
+	        span.style.color = "red";
 
-	      	}
-    	function check_pwd(){
+	      }
 
-       		console.log(2);
-       		var code2 = document.getElementById("pwd").value;
-       		var span2 = document.getElementById("pwdReg");
-       		var reg2 = /^(\w){6,20}$/;
+	   }
+    function check_pwd(){
 
-       		if(reg2.test(code2)) {
-	        	span2.innerText = "验证通过";
-	        	span2.style.color = "green";
-	      	} else {
-	        		span2.innerText = "验证不通过";
-	        		span2.style.color = "red";
-       			} 
+       console.log(2);
+       var code2 = document.getElementById("pwd").value;
+       var span2 = document.getElementById("pwdReg");
+       var reg2 = /^(\w){6,20}$/;
+
+       if(reg2.test(code2)) {
+	        span2.innerText = "验证通过";
+	        span2.style.color = "green";
+	      } else {
+	        span2.innerText = "验证不通过";
+	        span2.style.color = "red";
+       } 
 
     }	
-    	$(function(){
+    $(function(){
 
-		$("#bttwo").click(function(){
-			
-			window.location.href = "register.html";
-
-		});	
-    		$("#bt").on("click",function(){
+    	$(":button").on("click",function(){
     		$.ajax({
 
-    			url:"http://nj-jay.com:8080/api/v1/login",
+    			url:"http://nj-jay.com:8080/api/v1/book/delete",
 
     			type:"post",
 
     			data:{
 
-    				username:$("#name").val(),
+    				id:$("#name").val(),
 
-    				password:$("#pwd").val()
     			},
 
     			dataType:"json",
@@ -157,37 +152,34 @@
     			success:function(data){
 
     				if(data == "success"){
+					alert("删除成功");
 						
     					window.location.href = "view.html";
 
-    				}else if (data == "error"){
+    				}else if (data == "err"){
 
-    					alert("用户名或密码输入错误，请重新输入!");
+    					alert("添加失败!");
 
     				}
     			}
     		});
     	});
     });
-	
     </script> 
 
   <body >
 
-	<h1 style="text-align: center;">Mysql-Gin-RestfulApi</h1>
+	<h1 style="text-align: center;">删除数据界面</h1>
 	<h2 style="text-align: center;">By nj-jay</h2>
 	<div class="nj">
 	
 	<form method="post"  >  
-	  <input type="text" required="required" placeholder="用户名" name="name" id="name" οnblur="check_name() ></input><span id="nameReg"></span>  
+	  <input type="text" required="required" placeholder="id" name="name" id="name" οnblur="check_name() ></input><span id="nameReg"></span>  
 	  <br/>
-	  <input type="password" required="required" placeholder="密码" name="pwd" id="pwd" οnblur="check_pwd()"></input><span id="pwdReg"></span>
-	  <br/> 
-	  <button class="but" type="submit" id="bt">登录</button> 
+	  <button class="but" type="submit" >删除</button> 
   </form>  
 
-	<br/>
-	<button class="but" id="bttwo">注册</button>
   </div>
   </body>
 </html>
+

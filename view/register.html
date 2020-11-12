@@ -99,49 +99,56 @@
 <script type="text/javascript">
     	
     	function check_name() {
-		console.log(1);
-	        var code = document.getElementById("name").value;//这是获取账号登陆的ID
-	        var span = document.getElementById("nameReg");
-	        var reg = /^([a-zA-Z0-9][a-zA-Z]{1}|[._]){4,19}$/;
-	        if(reg.test(code)) {
-	        	span.innerText = "验证通过";
-	        	span.style.color = "blue";
 
-	        } else {
+	      console.log(1);
 
-	        	span.innerText = "验证不通过";
-	        	span.style.color = "red";
+	      var code = document.getElementById("name").value;//这是获取账号登陆的ID
 
-	      	       }
+	　　　var span = document.getElementById("nameReg");
+	      
+	      var reg = /^([a-zA-Z0-9][a-zA-Z]{1}|[._]){4,19}$/;
+	      if(reg.test(code)) {
+	        span.innerText = "验证通过";
+	        span.style.color = "blue";
 
-	      	}
-    	function check_pwd(){
+	      } else {
 
-       		console.log(2);
-       		var code2 = document.getElementById("pwd").value;
-       		var span2 = document.getElementById("pwdReg");
-       		var reg2 = /^(\w){6,20}$/;
+	        span.innerText = "验证不通过";
+	        span.style.color = "red";
 
-       		if(reg2.test(code2)) {
-	        	span2.innerText = "验证通过";
-	        	span2.style.color = "green";
-	      	} else {
-	        		span2.innerText = "验证不通过";
-	        		span2.style.color = "red";
-       			} 
+	      }
+
+	   }
+    function check_pwd(){
+
+       console.log(2);
+       var code2 = document.getElementById("pwd").value;
+       var span2 = document.getElementById("pwdReg");
+       var reg2 = /^(\w){6,20}$/;
+
+       if(reg2.test(code2)) {
+	        span2.innerText = "验证通过";
+	        span2.style.color = "green";
+	      } else {
+	        span2.innerText = "验证不通过";
+	        span2.style.color = "red";
+       } 
 
     }	
-    	$(function(){
+    $(function(){	
 
-		$("#bttwo").click(function(){
-			
-			window.location.href = "register.html";
+    	$(":button").on("click",function(){		
+	
+		var nameCode = $("#name").val().trim();
+		var pwdCode = $("#pwd").val().trim();
+		if(nameCode == "" || pwdCode == ""){
 
-		});	
-    		$("#bt").on("click",function(){
+			alert("username或者password不能为空");
+			return;
+		} 
     		$.ajax({
 
-    			url:"http://nj-jay.com:8080/api/v1/login",
+    			url:"http://nj-jay.com:8080/api/v1/login/add",
 
     			type:"post",
 
@@ -154,27 +161,29 @@
 
     			dataType:"json",
 
+			
+
     			success:function(data){
 
-    				if(data == "success"){
+    				if(data == "success add user"){
+					alert("注册成功");
 						
-    					window.location.href = "view.html";
+    					window.location.href = "index.html";
 
-    				}else if (data == "error"){
+    				}else if (data == "err add user"){
 
-    					alert("用户名或密码输入错误，请重新输入!");
+    					alert("用户已经存在!");
 
     				}
     			}
     		});
     	});
     });
-	
     </script> 
 
   <body >
 
-	<h1 style="text-align: center;">Mysql-Gin-RestfulApi</h1>
+	<h1 style="text-align: center;">注册界面</h1>
 	<h2 style="text-align: center;">By nj-jay</h2>
 	<div class="nj">
 	
@@ -183,11 +192,10 @@
 	  <br/>
 	  <input type="password" required="required" placeholder="密码" name="pwd" id="pwd" οnblur="check_pwd()"></input><span id="pwdReg"></span>
 	  <br/> 
-	  <button class="but" type="submit" id="bt">登录</button> 
+	  <button class="but" type="submit" >注册</button> 
   </form>  
 
-	<br/>
-	<button class="but" id="bttwo">注册</button>
   </div>
   </body>
 </html>
+

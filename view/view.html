@@ -61,6 +61,38 @@
 		display:none;
 		font-size: large;
 		}
+		#bt{
+			text-align: center;
+		}
+	#btAdd{
+        	background: #029b8e;
+   	　　 }
+    	#btSearch{
+        background: #22a3f5;
+   	 }
+   	 #btDelete{
+        background: #f5ba00;
+   	 }
+    	#btClear{
+        background: #f55f26;
+   	 }
+
+    	#btUpdate{
+        background: #039dcb;
+    	}
+	.btn{
+        text-decoration-line: none;
+        /*width: 32px;*/
+        /*height: 22px;*/
+        color: #e1e7e7;
+        /*background: #0eaca7;*/
+        background: red;
+        margin-left: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        border-radius: 2px;
+
+    	}
 	</style>
 </head>
 
@@ -74,10 +106,19 @@
 
  </script>
 	<body background="https://pic1.zhimg.com/v2-47a311d313d56c479b9b028d7d67807c_r.jpg">
+		
+
 
 		<div id="flip">简介</div>
 		<div id="panel">mysql-gin-api</div>
 		
+		<div id="bt">
+		<br/>
+            	<a href="dataSearch.html" id="btSearch" class="btn">查找</a>
+            	<a href="dataAdd.html" id="btAdd" class="btn">增加</a>
+            	<a href="dataDelete.html" id="btDelete" class="btn">删除</a>
+            	<a href="dataUpdate.html" id="btUpdate" class="btn">修改</a>
+        	</div>
 		<div class="test">view</div>
 			<table border="1" cellspacing="0" bordercolor="#4bade8" cellpadding="0" id="jsonTable">
 				<tr>
