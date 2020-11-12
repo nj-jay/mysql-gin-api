@@ -79,3 +79,22 @@ func TrueLogin(username, password string) Status {
 
 	return Status(status)
 }
+
+func PostLogin(username, password string) Status {
+
+	db, _ := database.Connect()
+
+	stmt, _ := db.Prepare(database.PostUsername)
+
+	_, err := stmt.Exec(username, password)
+
+	if err != nil {
+
+		return 404
+
+	} else {
+
+		return 200
+
+	}
+}

@@ -47,26 +47,40 @@ func QueryData() []BookData {
 
 }
 
-func QuerySingleDataById(id string) (*BookData, Status) {
+func QueryDataByName(name string) []BookData {
 
 	db, _ := database.Connect()
 
 	defer db.Close()
 
+	fmt.Println(name)
+
+	rows, err := db.Query(database.QueryDataByName, name)
+
+	sliceBook := make([]BookData, 0)
+
 	bookData := new(BookData)
-
-	rows := db.QueryRow(database.QuerySingleDataById, id)
-
-	err :=  rows.Scan(&bookData.Id, &bookData.Name, &bookData.Price)
 
 	if err != nil {
 
-		return bookData, 404
-
-	} else {
-
-		return bookData, 200
+		fmt.Println(err)
 	}
+
+	for rows.Next() {
+
+		err := rows.Scan(&bookData.Id, &bookData.Name, &bookData.Price)
+
+		if err != nil {
+
+			fmt.Println("ERROR")
+
+		}
+
+		sliceBook = append(sliceBook, *bookData)
+	}
+
+	return sliceBook
+
 }
 
 func DeleteSingleDataById(id string) Status {
@@ -75,9 +89,11 @@ func DeleteSingleDataById(id string) Status {
 
 	defer db.Close()
 
-	stmt, _ := db.Prepare(database.DeleteSingleDataById)
+	fmt.Println(id)
 
-	_, err := stmt.Exec(id)
+	_, err := db.Exec(database.DeleteSingleDataById, id)
+
+	//fmt.Println(err)
 
 	if err != nil {
 
@@ -89,15 +105,15 @@ func DeleteSingleDataById(id string) Status {
 	}
 }
 
-func UpdateSingleDataById(id, price string) Status {
+func UpdateSingleDataById(id, name, price string) Status {
 
 	db, _ := database.Connect()
 
 	defer db.Close()
 
-	stmt, _ := db.Prepare(database.UpdateSingleDataById)
+	fmt.Println(id, name, price)
 
-	_, err := stmt.Exec(price, id)
+	_, err := db.Exec(database.UpdateSingleDataById, name, price, id)
 
 	if err != nil {
 
@@ -108,7 +124,6 @@ func UpdateSingleDataById(id, price string) Status {
 		return 200
 	}
 }
-
 
 func PostSingleData(name, price string) Status {
 
@@ -128,6 +143,4 @@ func PostSingleData(name, price string) Status {
 
 		return 200
 	}
-
 }
-
