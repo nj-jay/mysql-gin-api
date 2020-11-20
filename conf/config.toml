@@ -1,4 +1,4 @@
-app_name = "mysql-gin-restful"
+Program = "mysql-gin-restful"
 
 [mysql]
 
