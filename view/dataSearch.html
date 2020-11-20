@@ -3,8 +3,9 @@
 	<head>
 		<meta charset="UTF-8">
 
+<link rel="shortcut icon" href="https://picture.nj-jay.com/favicon.ico">
 		<title>mysql-gin-api</title>
-
+</head>
 		<style type="text/css">
 
 			.container {
@@ -88,7 +89,7 @@
 	</style>
 </head>
 
-<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <body background="https://pic1.zhimg.com/v2-47a311d313d56c479b9b028d7d67807c_r.jpg">
 		
 		<div id="bt">
@@ -99,7 +100,7 @@
 		<div class="test"></div>
 		<div id="searchInput">
 		<form method="post">
-         		 <input type="text" required="required" placeholder="name" name="name" id="name" οnblur="check_name()" ></input><span id="nameReg"></span>  
+         		 <input type="text" required="required" placeholder="模糊匹配" name="name" id="name"></input> 
   	</form>  
 
 		<button id="btSearch" class="but" type="submit">查找</a>
@@ -109,7 +110,10 @@
 				<tr>
 					<th >id</th>
 					<th>name</th>
+					<th>types</th>
+					<th>author</th>
 					<th>price</th>
+					<th>addTime</th>
 				</tr>
 		</table>
 
@@ -120,14 +124,13 @@
 				getDate()
 				function getDate() {
 					
-					$(":button").on("click", function(){
+					$("button").on("click", function(){
 						$.ajax({
                                                 type: "post",
-                                                url: "http://nj-jay.com:8080/api/v1/book/search",
+                                                url: "http://nj-jay.com:8080/api/v2/book/search",
                                                 dataType: "json",
                                                 data:{
-													name:$("#name").val()
-												},
+							name:$("#name").val()												},
                                                 success: function(data) {
                                                         
                                                         var list = data
@@ -136,8 +139,10 @@
                                                                 temp +=
                                                                         '<tr>' +
                                                                         '<td>' + list[$i].id + '</td>' +
-                                                                        '<td>' + list[$i].name + '</td>' +
-                                                                        '<td>' + list[$i].price+ '</td>' +
+									'<td>' + list[$i].name + '</td>' +
+									'<td>' + list[$i].types+ '</td>' +
+									'<td>' + list[$i].author+ '</td>'+									'<td>' + list[$i].price+ '</td>' +
+								'<td>' + list[$i].addTime+ '</td>' +
                                                                         '</tr>';
                                                         }
                                                         $("#jsonTable tr:not(:first)").html(""); /*  除了>第一行tr的内容，其余内容清空，防止获取重复的数据  */

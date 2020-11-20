@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>register</title>
+	
+<link rel="shortcut icon" href="https://picture.nj-jay.com/favicon.ico">
   </head>
   <style>
     html{   
@@ -94,47 +96,10 @@
 
   </style>
 
-<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script type="text/javascript">
     	
-    	function check_name() {
-
-	      console.log(1);
-
-	      var code = document.getElementById("name").value;//这是获取账号登陆的ID
-
-	　　　var span = document.getElementById("nameReg");
-	      
-	      var reg = /^([a-zA-Z0-9][a-zA-Z]{1}|[._]){4,19}$/;
-	      if(reg.test(code)) {
-	        span.innerText = "验证通过";
-	        span.style.color = "blue";
-
-	      } else {
-
-	        span.innerText = "验证不通过";
-	        span.style.color = "red";
-
-	      }
-
-	   }
-    function check_pwd(){
-
-       console.log(2);
-       var code2 = document.getElementById("pwd").value;
-       var span2 = document.getElementById("pwdReg");
-       var reg2 = /^(\w){6,20}$/;
-
-       if(reg2.test(code2)) {
-	        span2.innerText = "验证通过";
-	        span2.style.color = "green";
-	      } else {
-	        span2.innerText = "验证不通过";
-	        span2.style.color = "red";
-       } 
-
-    }	
     $(function(){	
 
     	$(":button").on("click",function(){		
@@ -145,10 +110,17 @@
 
 			alert("username或者password不能为空");
 			return;
-		} 
+		}
+		if(nameCode.length < 5 || pwdCode.length < 5){
+
+			alert("用户名或密码必须大于5个字符");
+			return;
+		}
+		
+ 
     		$.ajax({
 
-    			url:"http://nj-jay.com:8080/api/v1/login/add",
+    			url:"http://nj-jay.com:8080/api/v2/login/add",
 
     			type:"post",
 
@@ -156,12 +128,10 @@
 
     				username:$("#name").val(),
 
-    				password:$("#pwd").val()
+    				password:$("#pwd").val(),
     			},
 
     			dataType:"json",
-
-			
 
     			success:function(data){
 
@@ -188,9 +158,9 @@
 	<div class="nj">
 	
 	<form method="post"  >  
-	  <input type="text" required="required" placeholder="用户名" name="name" id="name" οnblur="check_name() ></input><span id="nameReg"></span>  
+	  <input type="text" required="required" placeholder="用户名" name="name" id="name"></input>
 	  <br/>
-	  <input type="password" required="required" placeholder="密码" name="pwd" id="pwd" οnblur="check_pwd()"></input><span id="pwdReg"></span>
+	  <input type="password" required="required" placeholder="密码" name="pwd" id="pwd"></input>
 	  <br/> 
 	  <button class="but" type="submit" >注册</button> 
   </form>  

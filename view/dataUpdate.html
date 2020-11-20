@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>add</title>
+<link rel="shortcut icon" href="https://picture.nj-jay.com/favicon.ico">
   </head>
   <style>
     html{   
@@ -94,74 +95,47 @@
 
   </style>
 
-<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script type="text/javascript">
     	
-    	function check_name() {
-
-	      console.log(1);
-	      var code = document.getElementById("name").value;//这是获取账号登陆的ID
-	      var span = document.getElementById("nameReg");
-	      var reg = /^([a-zA-Z0-9][a-zA-Z]{1}|[._]){4,19}$/;
-	      if(reg.test(code)) {
-	        span.innerText = "验证通过";
-	        span.style.color = "blue";
-
-	      } else {
-
-	        span.innerText = "验证不通过";
-	        span.style.color = "red";
-
-	      }
-
-	   }
-    function check_pwd(){
-
-       console.log(2);
-       var code2 = document.getElementById("pwd").value;
-       var span2 = document.getElementById("pwdReg");
-       var reg2 = /^(\w){6,20}$/;
-
-       if(reg2.test(code2)) {
-	        span2.innerText = "验证通过";
-	        span2.style.color = "green";
-	      } else {
-	        span2.innerText = "验证不通过";
-	        span2.style.color = "red";
-       } 
-
-    }	
     $(function(){
 
     	$(":button").on("click",function(){
     		$.ajax({
 
-    			url:"http://nj-jay.com:8080/api/v1/book/update",
+    			url:"http://nj-jay.com:8080/api/v2/book/update",
 
     			type:"post",
 
     			data:{
 				id:$("#id").val(),
 
-    				name:$("#name").val(),
+				name:$("#name").val(),
+
+					types:$("#types").val(),
+
+					author:$("#author").val(),
 
     				price:$("#price").val(),
+
+					addTime:$("#addTime").val(),
+
+				
     			},
 
-    			dataType:"json",
+    			dataType:"text",
 
-    			success: function(data){
+    			success:function(data){
 
     				if(data == "success"){
-
 					alert("修改成功");
 						
     					window.location.href = "view.html";
 
     				}else if (data == "err"){
 
-    					alert("修改失败!");
+    					alert("添加失败!");
 
     				}
     			}
@@ -177,13 +151,20 @@
 	<div class="nj">
 	
 	<form method="post"  >  
-	   <input type="text" required="required" placeholder="id" name="id" id="id" οnblur="check_name()" ></input>
+	<input type="text" required="required" placeholder="id" name="id" id="id"></input>
           <br/>
-          <input type="text" required="required" placeholder="name" name="name" id="name" οnblur="check_pwd()"></input><span id="pwdReg"></span>
 
-	  <input type="text" required="required" placeholder="price" name="price" id="price" οnblur="check_pwd()"></input><span id="pwdReg"></span>
+	 <input type="text" required="required" placeholder="name" name="name" id="name"></input>  
+	  <br/>
+	  <input type="text" required="required" placeholder="types" name="types" id="types"></input>
+	 <br/>
+	  <input type="text" required="required" placeholder="author" name="author" id="author"></input>
 	  <br/> 
-	  <button class="but" type="submit" >修改</button> 
+	  <input type="text" required="required" placeholder="price" name="price" id="price"></input>
+	  <br/> 
+	  <input type="text" required="required" placeholder="addTime" name="addTime" id="addTime"></input>
+	  <br/>   
+	<button class="but" type="submit" >添加</button> 
   </form>  
 
   </div>

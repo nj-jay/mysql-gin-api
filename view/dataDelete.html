@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>delete</title>
+<link rel="shortcut icon" href="https://picture.nj-jay.com/favicon.ico">
   </head>
   <style>
     html{   
@@ -95,90 +96,53 @@
   </style>
 
 <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+			
 
-<script type="text/javascript">
-    	
-    	function check_name() {
+				$(document).ready(function(){
 
-	      console.log(1);
-	      var code = document.getElementById("name").value;//这是获取账号登陆的ID
-	      var span = document.getElementById("nameReg");
-	      var reg = /^([a-zA-Z0-9][a-zA-Z]{1}|[._]){4,19}$/;
-	      if(reg.test(code)) {
-	        span.innerText = "验证通过";
-	        span.style.color = "blue";
+								$("button").on("click", function(){
 
-	      } else {
+									$.ajax({
 
-	        span.innerText = "验证不通过";
-	        span.style.color = "red";
+type:'POST',
 
-	      }
+url:"http://nj-jay.com:8080/api/v2/book/delete",
 
-	   }
-    function check_pwd(){
+data:{
 
-       console.log(2);
-       var code2 = document.getElementById("pwd").value;
-       var span2 = document.getElementById("pwdReg");
-       var reg2 = /^(\w){6,20}$/;
+		id:$("#id").val(),
 
-       if(reg2.test(code2)) {
-	        span2.innerText = "验证通过";
-	        span2.style.color = "green";
-	      } else {
-	        span2.innerText = "验证不通过";
-	        span2.style.color = "red";
-       } 
+},
 
-    }	
-    $(function(){
+dataType:'text',
 
-    	$(":button").on("click",function(){
-    		$.ajax({
+success:function(data){
 
-    			url:"http://nj-jay.com:8080/api/v1/book/delete",
+				alert(data);
+				window.location.href = "view.html";
 
-    			type:"post",
+},
 
-    			data:{
+});
 
-    				id:$("#name").val(),
+								});
 
-    			},
-
-    			dataType:"json",
-
-    			success:function(data){
-
-    				if(data == "success"){
-					alert("删除成功");
-						
-    					window.location.href = "view.html";
-
-    				}else if (data == "err"){
-
-    					alert("添加失败!");
-
-    				}
-    			}
-    		});
-    	});
-    });
-    </script> 
+								
+		});    
+</script> 
 
   <body >
 
 	<h1 style="text-align: center;">删除数据界面</h1>
 	<h2 style="text-align: center;">By nj-jay</h2>
+
 	<div class="nj">
-	
-	<form method="post"  >  
-	  <input type="text" required="required" placeholder="id" name="name" id="name" οnblur="check_name() ></input><span id="nameReg"></span>  
+	<form method="post">  
+		<input type="text" id="id" name="id" placeholder="id">
 	  <br/>
 	  <button class="but" type="submit" >删除</button> 
   </form>  
-
   </div>
   </body>
 </html>
