@@ -15,21 +15,21 @@ func Router() *gin.Engine {
 
 	r.Use(middlewares.Cors())
 
-	r.GET("/api/v1/books", controllers.QueryAllData)
+	r.GET("/api/v2/books/:page", controllers.QueryAllData)
 
-	r.POST("/api/v1/book/search", controllers.QueryDataByName)
+	r.POST("/api/v2/book/search", controllers.QueryDataByName)
 
-	r.GET("/api/v1/login", controllers.QueryAllLogin)
+	r.GET("/api/v2/login", controllers.QueryAllLogin)
 
-	r.POST("/api/v1/book/delete", controllers.DeleteSingleDataById)
+	r.POST("/api/v2/book/delete", controllers.DeleteSingleDataById)
 
-	r.POST("/api/v1/book/update", controllers.UpdateSingleDataById)
+	r.POST("/api/v2/book/update", controllers.UpdateSingleDataById)
 
-	r.POST("/api/v1/book/add", controllers.PostSingleData)
+	r.POST("/api/v2/book/add", controllers.PostSingleData)
 
-	r.POST("/api/v1/login", controllers.TrueLogin)
+	r.POST("/api/v2/trueLogin", controllers.TrueLogin)
 
-	r.POST("/api/v1/login/add", controllers.PostLogin)
+	r.POST("/api/v2/login/add", controllers.PostLogin)
 
 	return r
 
