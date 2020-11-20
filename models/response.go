@@ -1,5 +1,6 @@
 package models
 
+//响应
 type Error struct {
 
 	Code int `json:"code"`
