@@ -11,6 +11,7 @@ import (
 
 type Login models.Login
 
+//返回所有用户的登录信息
 func QueryLogin() []Login {
 
 	db, _ := database.Connect()
@@ -59,6 +60,7 @@ func QueryLogin() []Login {
 
 }
 
+//判断用户是否正确输入用户名和密码
 func TrueLogin(username, password string) Status {
 
 	var status int
@@ -80,6 +82,7 @@ func TrueLogin(username, password string) Status {
 	return Status(status)
 }
 
+//添加用户
 func PostLogin(username, password string) Status {
 
 	db, _ := database.Connect()
