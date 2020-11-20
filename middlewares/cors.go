@@ -8,6 +8,7 @@ import (
 
 )
 
+//解决跨域问题
 func Cors() gin.HandlerFunc {
 
 	return func(c *gin.Context) {
