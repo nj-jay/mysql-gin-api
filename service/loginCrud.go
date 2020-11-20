@@ -73,6 +73,7 @@ func TrueLogin(username, password string) Status {
 
 		if username == value.Username {
 
+			//通过hash解密判断用户密码是否正确
 			if util.HashDecrypt(value.Password, password) {
 
 				status = 200
