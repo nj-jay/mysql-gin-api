@@ -4,6 +4,8 @@ import (
 
 	"fmt"
 
+	"github.com/nj-jay/httpServer/util"
+
 	"github.com/nj-jay/httpServer/database"
 
 	"github.com/nj-jay/httpServer/models"
@@ -71,7 +73,7 @@ func TrueLogin(username, password string) Status {
 
 		if username == value.Username {
 
-			if password == value.Password {
+			if util.HashDecrypt(value.Password, password) {
 
 				status = 200
 
@@ -85,13 +87,21 @@ func TrueLogin(username, password string) Status {
 //添加用户
 func PostLogin(username, password string) Status {
 
+	//password加密
+	hashPwd := util.HashEncryption(password)
+
+	fmt.Println(hashPwd)
+
 	db, _ := database.Connect()
 
 	stmt, _ := db.Prepare(database.PostUsername)
 
-	_, err := stmt.Exec(username, password)
+	//数据库保存hash加密后的password
+	_, err := stmt.Exec(username, hashPwd)
 
 	if err != nil {
+
+		fmt.Println(err)
 
 		return 404
 
