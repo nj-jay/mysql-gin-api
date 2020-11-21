@@ -1,3 +1,13 @@
 #!/bin/bash
+for ((i=1; i <= 25; i++))
 
-curl http://localhost:8080/api/v2/books/2
+do
+    echo -e "第$i页内容\n"
+    curl http://nj-jay.com:8080/api/v2/books/$i
+    echo -e "\n"
+
+done
+
+
+
+
