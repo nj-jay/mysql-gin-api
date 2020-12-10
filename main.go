@@ -9,6 +9,11 @@ import (
 
 )
 
+// @title mysql-gin-api接口文档
+// @version 2.0
+// @description 接口文档
+// @contact.name nj-jay
+// @host http://localhost:8080/api/swagger/index.html
 func main() {
 
 	//r := routers.Router()
