@@ -114,4 +114,6 @@
 
 - [x] jwt鉴权
 
-- [x] swagger api文档
+- [x] 使用gorm
+
+- [x]  wagger api文档
