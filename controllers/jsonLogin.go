@@ -16,6 +16,12 @@ func QueryAllLogin(c *gin.Context) {
 
 }
 
+// @Summary 登录接口
+// @Produce  json
+// @Param username query string true "登录名"
+// @Param password query string true "密码"
+// @Success 200 {string} json "success"
+// @Router /api/v2/trueLogin [post]
 func TrueLogin(c *gin.Context) {
 
 	username := c.PostForm("username")
