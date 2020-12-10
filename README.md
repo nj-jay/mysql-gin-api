@@ -6,21 +6,21 @@
 
 构建一个云原生的基于mysql和go的微服务, 使用resful api与前端进行交互
 
-该项目已经部署在linux服务器上 [地址](http://nj-jay.com/test)
+该项目已经部署在linux服务器上 [地址](http://localhost/test)
 
 ## api文档
 
 ### 获取所有用户信息及登录和注册
 
-* [GET]  http://nj-jay.com:8080/api/v2/login
+* [GET]  http://localhost:8080/api/v2/login
 
   > 获取所有用户的登录信息
   >
   > 使用curl模拟请求,即可得到json数据
   >
-  > `curl http://nj-jay.com:8080/api/v2/login`
+  > `curl http://localhost:8080/api/v2/login`
 
-* [POST] http://nj-jay.com:8080/api/v2/trueLogin
+* [POST] http://localhost:8080/api/v2/trueLogin
 
   > 两个参数: username password
   >
@@ -28,11 +28,11 @@
   >
   > 使用curl模拟请求
   >
-  > `curl -d "username=linux&password=linux" http://nj-jay.com:8080/api/v2/trueLogin`
+  > `curl -d "username=linux&password=linux" http://localhost:8080/api/v2/trueLogin`
   >
   > 若用户名存在在数据库并且密码正确,则返回success
 
-* [POST] http://nj-jay.com:8080/api/v2/login/add
+* [POST] http://localhost:8080/api/v2/login/add
 
   > 两个参数: username, password
   >
@@ -40,7 +40,7 @@
   >
   > 使用curl模拟请求
   >
-  > `curl -d "username=linux&password=linux" http://nj-jay.com:8080/api/v2/login/add`
+  > `curl -d "username=linux&password=linux" http://localhost:8080/api/v2/login/add`
   >
   > 若数据库中无相同的username,则返回"success add user"
   >
@@ -48,7 +48,7 @@
 
 ### 数据信息的增删改查
 
-* [GET] http://nj-jay.com:8080/api/v2/books/:page
+* [GET] http://localhost:8080/api/v2/books/:page
 
   > 参数: page
   >
@@ -56,13 +56,13 @@
   >
   > 使用curl模拟请求
   >
-  > `curl http://nj-jay.com:8080/api/v2/books/1`
+  > `curl http://localhost:8080/api/v2/books/1`
   >
   > page为1则返回第一页的数据
   >
   > 当page值到了一定值时,数据库查询不到相关的数据返回空[]
 
-* [POST] http://nj-jay.com:8080/api/v2/book/search
+* [POST] http://localhost:8080/api/v2/book/search
 
   > 参数: name
   >
@@ -72,13 +72,13 @@
   >
   > 使用curl模拟请求
   >
-  > `curl -d "name=鲁迅" http://nj-jay.com:8080/api/v2/book/search`
+  > `curl -d "name=鲁迅" http://localhost:8080/api/v2/book/search`
   >
   > 若找到则返回所有鲁迅的书籍的信息
   >
   > 否则返回空[]
 
-* [POST] http://nj-jay.com:8080/api/v2/book/add
+* [POST] http://localhost:8080/api/v2/book/add
 
   > 参数: name, types, author, price, addTime
   >
@@ -86,9 +86,9 @@
   >
   > 使用curl模拟请求
   >
-  > `curl  -d "name=test&types=test&author=test&price=1000&addTime=0 http://nj-jay.com:8080/api/v2/book/add`
+  > `curl  -d "name=test&types=test&author=test&price=1000&addTime=0 http://localhost:8080/api/v2/book/add`
 
-* [POST] http://nj-jay.com:8080/api/v2/book/delete
+* [POST] http://localhost:8080/api/v2/book/delete
 
   > 参数: id
   >
@@ -96,9 +96,9 @@
   >
   > 使用curl模拟请求
   >
-  > `curl -d "id=10" http://nj-jay.com:8080/api/v2/book/delete`
+  > `curl -d "id=10" http://localhost:8080/api/v2/book/delete`
 
-* [POST] http://nj-jay.com:8080/api/v2/book/update
+* [POST] http://localhost:8080/api/v2/book/update
 
   > 参数:name, types, author, price, addTime, id
   >
@@ -106,14 +106,12 @@
   >
   > 使用curl模拟请求
   >
-  > `curl -d "name=test&types=test&author=test&price=1000&addTime=0&id=1 http://nj-jay.com:8080/api/v2/book/update  ` 
+  > `curl -d "name=test&types=test&author=test&price=1000&addTime=0&id=1 http://localhost:8080/api/v2/book/update  ` 
 
-## contributors
+## TODO
 
-| 模块                                    | 贡献者 |
-| --------------------------------------- | ------ |
-| 项目整体设计、后端核心代码、演讲        | 聂健   |
-| 数据库创建与设计sql语句与一部分数据收集 | 程欢   |
-| 后端测试与调试以及一部分数据收集        | 杜威威 |
-| 前端页面设计以及一部分数据收集          | 潘延杰 |
-| 收集数据以及前端调试                    | 罗浩骞 |
+- [x] 路由拆分
+
+- [x] jwt鉴权
+
+- [x] swagger api文档
