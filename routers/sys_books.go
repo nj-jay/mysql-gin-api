@@ -1,9 +1,13 @@
 package routers
 
 import (
+
 	"github.com/gin-gonic/gin"
+
 	"github.com/nj-jay/httpServer/controllers"
+
 	"github.com/nj-jay/httpServer/middlewares"
+
 )
 
 func LoadBooks(e *gin.Engine) {

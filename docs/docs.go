@@ -26,6 +26,44 @@ var doc = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/api/v2/login/add": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "注册接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "用户名",
+                        "name": "username",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "密码",
+                        "name": "password",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200, \"msg\":\"success add user\"}",
+                        "schema": {
+                            "type": ""
+                        }
+                    },
+                    "401": {
+                        "description": "{\"code\":401, \"msg\":\"add user error\"}",
+                        "schema": {
+                            "type": ""
+                        }
+                    }
+                }
+            }
+        },
         "/api/v2/trueLogin": {
             "post": {
                 "produces": [
@@ -47,15 +85,7 @@ var doc = `{
                         "in": "query",
                         "required": true
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                }
+                ]
             }
         }
     }
