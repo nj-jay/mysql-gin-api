@@ -36,8 +36,8 @@ http://localhost:8080:/swagger/index.html
 | http://localhost:8080/api/v2/books/:page  | 查询第page页       | page, Header中传入token【Authorization: Bearer token】 | GET  |
 | http://localhost:8080/api/v2/book/search  | 查询指定的书籍     | name                                                   | POST |
 | http://localhost:8080/api/v2/book/add     | 增加书籍           | name, types, author, price, addTime                    | POST |
-| http://localhost:8080/api/v2/books/update | 更新书籍           | id, name, types, author, price, addTime                |      |
-| http://localhost:8080/api/v2/books/delete | 删除书籍           | id                                                     |      |
+| http://localhost:8080/api/v2/books/update | 更新书籍           | id, name, types, author, price, addTime                | POST |
+| http://localhost:8080/api/v2/books/delete | 删除书籍           | id                                                     | POST |
 
 ## api使用
 
