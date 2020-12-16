@@ -3,19 +3,20 @@ package routers
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/nj-jay/httpServer/controllers"
+	"github.com/nj-jay/httpServer/middlewares"
 )
 
 func LoadBooks(e *gin.Engine) {
 
 
-	e.GET("/api/v2/books/:page", controllers.QueryAllData)
+	e.GET("/api/v2/books/:page", middlewares.JWTAuthMiddleware(), controllers.QueryAllData)
 
-	e.POST("/api/v2/book/search", controllers.QueryDataByName)
+	e.POST("/api/v2/book/search", middlewares.JWTAuthMiddleware(), controllers.QueryDataByName)
 
-	e.POST("/api/v2/book/delete", controllers.DeleteSingleDataById)
+	e.POST("/api/v2/book/delete", middlewares.JWTAuthMiddleware(), controllers.DeleteSingleDataById)
 
-	e.POST("/api/v2/book/update", controllers.UpdateSingleDataById)
+	e.POST("/api/v2/book/update", middlewares.JWTAuthMiddleware(), controllers.UpdateSingleDataById)
 
-	e.POST("/api/v2/book/add", controllers.PostSingleData)
+	e.POST("/api/v2/book/add", middlewares.JWTAuthMiddleware(), controllers.PostSingleData)
 
 }

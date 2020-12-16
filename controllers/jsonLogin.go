@@ -3,6 +3,7 @@ package controllers
 import (
 
 	"github.com/gin-gonic/gin"
+	"net/http"
 
 	"github.com/nj-jay/httpServer/service"
 
@@ -28,17 +29,36 @@ func TrueLogin(c *gin.Context) {
 
 	password := c.PostForm("password")
 
-	status := service.TrueLogin(username, password)
+	tokenString, err := service.TrueLogin(username, password)
 
-	if status == 200 {
+	if err != nil {
 
-		c.IndentedJSON(200, "success")
+		c.IndentedJSON(http.StatusOK, gin.H{
+
+			"code": 401,
+
+			"msg": tokenString,
+
+		})
 
 	} else {
 
-		c.IndentedJSON(200, "error")
+		c.IndentedJSON(http.StatusOK, gin.H {
+
+			"code" : 200,
+
+			"msg" : "success",
+
+			"data" : gin.H{
+
+				"token" : tokenString,
+			},
+
+		})
 
 	}
+
+
 }
 
 func PostLogin(c *gin.Context) {

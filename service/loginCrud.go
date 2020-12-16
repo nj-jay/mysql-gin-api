@@ -1,14 +1,22 @@
 package service
 
 import (
-
+	"errors"
 	"fmt"
+	"github.com/nj-jay/httpServer/middlewares"
 
 	"github.com/nj-jay/httpServer/util"
 
 	"github.com/nj-jay/httpServer/database"
 
 	"github.com/nj-jay/httpServer/models"
+
+	_ "github.com/nj-jay/httpServer/docs"
+
+	//gs "github.com/swaggo/gin-swagger"
+	//
+	//"github.com/swaggo/gin-swagger/swaggerFiles"
+
 )
 
 type Login models.Login
@@ -63,9 +71,7 @@ func QueryLogin() []Login {
 }
 
 //判断用户是否正确输入用户名和密码
-func TrueLogin(username, password string) Status {
-
-	var status int
+func TrueLogin(username, password string) (string, error) {
 
 	allLogin := QueryLogin()
 
@@ -76,13 +82,20 @@ func TrueLogin(username, password string) Status {
 			//通过hash解密判断用户密码是否正确
 			if util.HashDecrypt(value.Password, password) {
 
-				status = 200
+				//生成token
+				tokenString, _ := middlewares.GenToken(value.Username, value.Password)
+
+				return tokenString, nil
+
+			} else {
+
+				return "error", errors.New("err")
 
 			}
 		}
 	}
 
-	return Status(status)
+	return "", nil
 }
 
 //添加用户

@@ -2,12 +2,12 @@ Program = "mysql-gin-restful"
 
 [mysql]
 
-ip = "localhost"
+ip = "47.95.1.229"
 
 port = "3306"
 
-username = "root"
+username = "mysql_nj_jay_com"
 
-password = "root"
+password = "000000"
 
-database = "bookmanage"
+database = "mysql_nj_jay_com"
