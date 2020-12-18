@@ -12,14 +12,14 @@ import (
 
 func LoadBooks(e *gin.Engine) {
 
-	e.GET("/api/v2/books", middlewares.JWTAuthMiddleware(), controllers.QueryAllData)
+	e.GET("/api/v3/books", middlewares.JWTAuthMiddleware(), controllers.QueryAllData)
 
-	e.POST("/api/v2/book/search", middlewares.JWTAuthMiddleware(), controllers.QueryDataByName)
+	e.POST("/api/v3/book/search", middlewares.JWTAuthMiddleware(), controllers.QueryDataByName)
 
-	e.POST("/api/v2/book/delete", middlewares.JWTAuthMiddleware(), controllers.DeleteSingleDataById)
+	e.POST("/api/v3/book/delete", middlewares.JWTAuthMiddleware(), controllers.DeleteSingleDataById)
 
-	e.POST("/api/v2/book/update", middlewares.JWTAuthMiddleware(), controllers.UpdateSingleDataById)
+	e.POST("/api/v3/book/update", middlewares.JWTAuthMiddleware(), controllers.UpdateSingleDataById)
 
-	e.POST("/api/v2/book/add", middlewares.JWTAuthMiddleware(), controllers.PostSingleData)
+	e.POST("/api/v3/book/add", middlewares.JWTAuthMiddleware(), controllers.PostSingleData)
 
 }

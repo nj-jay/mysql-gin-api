@@ -18,11 +18,11 @@ func LoadLogin(e *gin.Engine) {
 
 	e.GET("/swagger/*any", gs.WrapHandler(swaggerFiles.Handler))
 
-	e.GET("/api/v2/login", middlewares.JWTAuthMiddleware(), controllers.QueryAllLogin)
+	e.GET("/api/v3/login", middlewares.JWTAuthMiddleware(), controllers.QueryAllLogin)
 
-	e.POST("/api/v2/trueLogin", controllers.TrueLogin)
+	e.POST("/api/v3/trueLogin", controllers.TrueLogin)
 
-	e.POST("/api/v2/login/add", controllers.PostLogin)
+	e.POST("/api/v3/login/add", controllers.PostLogin)
 
 
 
