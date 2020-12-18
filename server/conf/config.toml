@@ -1,0 +1,13 @@
+Program = "mysql-gin-restful"
+
+[mysql]
+
+ip = "47.95.1.229"
+
+port = "3306"
+
+username = "gin-mysql-api"
+
+password = "000000"
+
+database = "gin-mysql-api"

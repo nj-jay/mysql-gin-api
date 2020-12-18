@@ -1,0 +1,76 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "接口文档",
+        "title": "mysql-gin-api接口文档",
+        "contact": {
+            "name": "nj-jay"
+        },
+        "version": "2.0"
+    },
+    "host": "http://localhost:8080/api/swagger/index.html",
+    "paths": {
+        "/api/v2/login/add": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "注册接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "用户名",
+                        "name": "username",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "密码",
+                        "name": "password",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200, \"msg\":\"success add user\"}",
+                        "schema": {
+                            "type": ""
+                        }
+                    },
+                    "401": {
+                        "description": "{\"code\":401, \"msg\":\"add user error\"}",
+                        "schema": {
+                            "type": ""
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/trueLogin": {
+            "post": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "登录接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "登录名",
+                        "name": "username",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "密码",
+                        "name": "password",
+                        "in": "query",
+                        "required": true
+                    }
+                ]
+            }
+        }
+    }
+}

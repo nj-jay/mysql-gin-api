@@ -1,0 +1,50 @@
+host: http://localhost:8080/api/swagger/index.html
+info:
+  contact:
+    name: nj-jay
+  description: 接口文档
+  title: mysql-gin-api接口文档
+  version: "2.0"
+paths:
+  /api/v2/login/add:
+    post:
+      parameters:
+      - description: 用户名
+        in: query
+        name: username
+        required: true
+        type: string
+      - description: 密码
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200, "msg":"success add user"}'
+          schema:
+            type: ""
+        "401":
+          description: '{"code":401, "msg":"add user error"}'
+          schema:
+            type: ""
+      summary: 注册接口
+  /api/v2/trueLogin:
+    post:
+      parameters:
+      - description: 登录名
+        in: query
+        name: username
+        required: true
+        type: string
+      - description: 密码
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      summary: 登录接口
+swagger: "2.0"
