@@ -18,6 +18,7 @@ require (
 	github.com/swaggo/gin-swagger v1.3.0
 	github.com/swaggo/swag v1.7.0
 	github.com/ugorji/go v1.2.1 // indirect
+	github.com/unrolled/secure v1.0.8 // indirect
 	golang.org/x/crypto v0.0.0-20201208171446-5f87f3452ae9
 	golang.org/x/net v0.0.0-20201209123823-ac852fbbde11 // indirect
 	golang.org/x/sys v0.0.0-20201207223542-d4d67f95c62d // indirect

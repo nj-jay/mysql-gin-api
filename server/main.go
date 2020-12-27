@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/nj-jay/httpServer/initialization"
 	"github.com/gin-gonic/gin"
 	"github.com/nj-jay/httpServer/global"
+	"github.com/nj-jay/httpServer/initialization"
 	"github.com/nj-jay/httpServer/middlewares"
 	"github.com/nj-jay/httpServer/routers"
 	"log"
-
+	"net/http"
 )
 
 // @title mysql-gin-api接口文档
@@ -31,11 +31,11 @@ func main() {
 
 	routers.LoadBooks(r)
 
-	err := r.Run(":8080")
+	err := http.ListenAndServeTLS(":8080", "conf/api.nj-jay.com_bundle.crt", "conf/api.nj-jay.com.key", r)
 
 	if err != nil {
 
-		log.Println("run error")
+		log.Fatal("run err")
 
 	}
 }
