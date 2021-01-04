@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/nj-jay/httpServer/global"
 	"github.com/nj-jay/httpServer/middlewares"
-
 	"github.com/nj-jay/httpServer/util"
 
 	"github.com/nj-jay/httpServer/models"
@@ -40,31 +39,57 @@ func QueryLogin() []models.Login {
 }
 
 //判断用户是否正确输入用户名和密码
+//func TrueLogin(username, password string) (string, error) {
+//
+//	allLogin := QueryLogin()
+//
+//	for _, value := range allLogin {
+//
+//		if username == value.Username {
+//
+//			//通过hash解密判断用户密码是否正确
+//			if util.HashDecrypt(value.Password, password) {
+//
+//				//生成token
+//				tokenString, _ := middlewares.GenToken(value.Username, value.Password)
+//
+//				return tokenString, nil
+//
+//			} else {
+//
+//				return "", errors.New("error")
+//
+//			}
+//		}
+//	}
+//
+//	return "", nil
+//}
+
 func TrueLogin(username, password string) (string, error) {
 
-	allLogin := QueryLogin()
+	var login models.Login
 
-	for _, value := range allLogin {
+	err := global.GMD_DB.Where("username = ?", username).Find(&login).Error
 
-		if username == value.Username {
+	if err != nil {
 
-			//通过hash解密判断用户密码是否正确
-			if util.HashDecrypt(value.Password, password) {
+		return "", errors.New("用户不存在")
 
-				//生成token
-				tokenString, _ := middlewares.GenToken(value.Username, value.Password)
-
-				return tokenString, nil
-
-			} else {
-
-				return "", errors.New("error")
-
-			}
-		}
 	}
 
-	return "", nil
+	if username == login.Username && util.HashDecrypt(login.Password, password) {
+
+		tokenString, _ := middlewares.GenToken(login.Username, login.Password)
+
+		return tokenString, nil
+
+	} else {
+
+		return "", errors.New("密码不正确")
+
+	}
+
 }
 
 //添加用户

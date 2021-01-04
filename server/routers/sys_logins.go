@@ -24,6 +24,4 @@ func LoadLogin(e *gin.Engine) {
 
 	e.POST("/api/v3/login/add", controllers.PostLogin)
 
-
-
 }

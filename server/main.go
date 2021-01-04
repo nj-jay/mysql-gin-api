@@ -7,7 +7,6 @@ import (
 	"github.com/nj-jay/httpServer/middlewares"
 	"github.com/nj-jay/httpServer/routers"
 	"log"
-	"net/http"
 )
 
 // @title mysql-gin-api接口文档
@@ -31,7 +30,9 @@ func main() {
 
 	routers.LoadBooks(r)
 
-	err := http.ListenAndServeTLS(":8080", "conf/api.nj-jay.com_bundle.crt", "conf/api.nj-jay.com.key", r)
+	err := http.ListenAndServeTLS(":8082", "conf/api.nj-jay.com_bundle.crt", "conf/api.nj-jay.com.key", r)
+
+	//err := r.Run(":8080")
 
 	if err != nil {
 
